@@ -29,7 +29,7 @@ public class Utils {
             case 1:
                 return "Welcome to Mama Money! Where would you like to send money to?\n1) Kenya\n2) Malawi";
             case 2:
-                return "How much money (in Rands) would you like to send to?\n<CountryName>?";
+                return "How much money (in Rands) would you like to send to <CountryName>?";
             case 3:
                 return "The person you are sending to will receive: <Amount> <ForeignCurrencyCode> \n 1)Ok";
             case 4:

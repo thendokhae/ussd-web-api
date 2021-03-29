@@ -49,7 +49,6 @@ public class USSDWorker {
         ussdResponse.setSessionId(state.getSessionId());
         switch (state.getStage()) {
             case 1:
-            case 4:
                 ussdResponse.setMessage(Utils.getMessageByStage(state.getStage()));
                 break;
             case 2:
@@ -61,6 +60,10 @@ public class USSDWorker {
                         .replace("<Amount>", Utils.getForexAmount(state.getAmountToSend(), state.getSelectedCountry()))
                         .replace("<ForeignCurrencyCode>", Utils.getCurrencyCodeFromEntry(state.getSelectedCountry())));
                 break;
+            case 4:
+                ussdResponse.setMessage(Utils.getMessageByStage(state.getStage()));
+                clearState(state);
+                break;
             default:
         }
         return ussdResponse;
@@ -68,5 +71,9 @@ public class USSDWorker {
 
     private void updateState(State state) {
         stateRepository.save(state);
+    }
+
+    private void clearState(State state) {
+        stateRepository.delete(state);
     }
 }
